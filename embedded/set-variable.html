@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Embedded NetsBlox</title>
+		<script charset="utf-8" src="https://editor.netsblox.org/embedded-api.js"></script>
+	</head>
+	<body style="margin:0;">
+		<iframe id="netsblox" frameborder="0" style="width:100%;height:100%;position:absolute;"></iframe>
+	</body>
+	<script charset="utf-8">
+		window.onload = () => {
+			const container = document.getElementById('netsblox');
+			const projectURL = 'https://raw.githubusercontent.com/NetsBlox/integration-examples/main/embedded/set-variable.xml';
+			const uniqueID = Math.floor(Math.random() * 10000);  // This isn't unique but in practice it should be for this type of project
+			const addressVariable = 'example_' + uniqueID;
+			const params = {
+				setVariable: `addressVariable=${addressVariable}`,
+			};
+			const paramString = Object.entries(params)
+				.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+				.join('&');
+
+			//const url = `https://editor.netsblox.org#open:${projectURL}?${paramString}`
+			const url = `https://editor.netsblox.org?${paramString}`
+			container.setAttribute('src', url);
+			const netsblox = new EmbeddedNetsBloxAPI(container);
+			console.log('Now, you can interact with netsblox using:', netsblox);
+			console.log('Please open the project found in this directory to see an example project.');
+			netsblox.addEventListener('myCustomEvent', event => {
+				console.log({event});
+			});
+		};
+	</script>
+</html>

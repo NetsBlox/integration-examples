@@ -22,8 +22,7 @@
 				.map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
 				.join('&');
 
-			//const url = `https://editor.netsblox.org#open:${projectURL}?${paramString}`
-			const url = `https://editor.netsblox.org?${paramString}`
+			const url = `https://editor.netsblox.org#open:${projectURL}?${paramString}`;
 			container.setAttribute('src', url);
 			const netsblox = new EmbeddedNetsBloxAPI(container);
 			console.log('Now, you can interact with netsblox using:', netsblox);

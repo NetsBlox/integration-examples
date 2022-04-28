@@ -12,6 +12,12 @@
 	</body>
 	<script charset="utf-8">
 		window.onload = () => {
+			/*
+			 * This example: 
+			 *    - generates a random name to use to connect to one another
+			 *    - opens two projects with "addressVariable" set to this value
+			 *    - uses a cloud variable with the given name to connect to one another
+			 */
 			const uniqueID = Math.floor(Math.random() * 10000);  // This isn't unique but in practice it should be for this type of project
 			const projectURL = 'https://raw.githubusercontent.com/NetsBlox/integration-examples/main/embedded/set-variable.xml';
 			const addressVariable = 'example_' + uniqueID;
